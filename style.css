@@ -1,0 +1,23 @@
+*,*::before,*::after{
+    box-sizing:border-box;
+    margin:0;
+}
+body{
+    min-height:100vh;
+    font-family:sans-serif;
+}
+img{
+    width:150px;
+    height:150px;
+    border:1px solid #111;
+}
+.grid{
+    margin:3em auto;
+    display:flex;
+    width:min(1200px,100%);
+    min-height:600px;
+    flex-wrap:wrap;
+    align-items:center;
+    align-content:flex-start;
+    gap:5px;
+}
