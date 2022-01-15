@@ -5,11 +5,18 @@
 body{
     min-height:100vh;
     font-family:sans-serif;
+    background-image:url('https://images.pexels.com/photos/269630/pexels-photo-269630.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-color:#333;
+    background-blend-mode:multiply;
+
 }
 img{
     width:150px;
     height:150px;
-    border:1px solid #111;
+  
+    border-radius:0.4em;
 }
 .grid{
     margin:3em auto;
@@ -20,4 +27,71 @@ img{
     align-items:center;
     align-content:flex-start;
     gap:5px;
+}
+
+/* card menu css */
+.card__menu{
+    position:fixed;
+    inset:0;
+    background-image:url('https://images.pexels.com/photos/269630/pexels-photo-269630.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    z-index:99;
+    
+}
+.container{
+    max-width:800px;
+    margin:3em auto;
+    padding:1em;
+    width:85%;
+    position: relative;
+}
+.container::before{
+   position:absolute;
+   content:'';
+   inset:0;
+   background-image:radial-gradient(circle at center,#000078 50%,#0008b0 75% ,#0a84ef 50%);
+   opacity:0.8;
+   z-index:-1;
+   border-radius:0.3em;
+
+   
+}
+.row{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:1em;
+}
+.card__title{
+    font-size:6rem;
+    color:#f8cf57;
+    text-shadow:  0.025em 0.025em 0 yellow,
+    0.05em 0.05em 0 blue,
+    0.075em 0.075em 0 red,
+    0.1em 0.1em 0 black;
+}
+.bar{
+   background:#fff;
+   text-align:center;
+   border-radius:0.3em;
+   padding:0.25em 0.25em;
+   border:1px solid #0579ea;
+   color:#0579ea;
+   margin-bottom:0.4em;
+}
+
+.option{
+    display:inline-block;
+    background:#fff;
+    border:0;
+    box-shadow:0 0 2px 2px #0579ea;
+    color:#0579ea;
+    padding:0.75em;
+    border-radius:0.8em;
+    font-weight:800;
+    font-size:1rem;
+    width:100%;
+    outline:0;
+    min-width:200px;
+    cursor: pointer;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

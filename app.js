@@ -141,37 +141,16 @@ const gameWinner = document.querySelector('#audio-winner')
 const time = document.querySelector('.timer')
 const lost= document.querySelector('#loose')
 
+// assinging time
 let value=60
 
 let date= new Date();
 console.log(`${date.getMinutes()} : ${date.getSeconds()}`);
 let seconds= (date.getSeconds())
 let min= 2
+let interVal;
 
-const interval=setInterval(timer, 50);
 
-function timer(){
-    
-    time.textContent=`${min} : ${seconds}`;
-    seconds--;
-
-    if(seconds===0){
-      
-        min--;
-        seconds=59;
-    }
-   
-
-    if(min===0){
-        lost.play();
-        console.log('fff');
-        clearInterval(interval);
-        
-    }
-
-   
-
-}
 
 
 let selectedCards=[];
@@ -200,6 +179,11 @@ function flipCard(){
     this.setAttribute('src',arrayofCards[dataNumber].src);
     selectedCards.push(arrayofCards[dataNumber].name);
     selectedId.push(dataNumber)
+
+    // when first card is selected the timer will play
+     interVal=setInterval(timer, 100);
+
+
     if(selectedId.length===2 || selectedCards===2){
        setTimeout(checkCards,200);
     }
@@ -221,8 +205,8 @@ function checkCards(){
 
     else if(firstCard===secondCard){
         console.log('mathced');
-        images[firstId].setAttribute('src','images/tick.png');
-        images[secondId].setAttribute('src','images/tick.png');
+        images[firstId].setAttribute('src','https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png');
+        images[secondId].setAttribute('src','https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png');
 
         //
         audioWin.play();
@@ -252,4 +236,38 @@ function checkCards(){
     selectedCards=[];
     
 }
+
+function timer(){
+    
+    time.textContent=`${min} : ${seconds}`;
+    seconds--;
+
+    if(seconds===0){
+      
+        min--;
+        seconds=59;
+    }
+   
+
+    if(min===0){
+        lost.play();
+        console.log('fff');
+        clearInterval(interVal);
+
+        // game over
+        
+    }
+
+   
+
+}
+
+
+/// clcik button
+
+const cardMenu=document.querySelector('.card__menu');
+const easyBtn = document.querySelector('#easy');
+easyBtn.addEventListener('click',()=>{
+    cardMenu.style.display='none';
+})
 
