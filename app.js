@@ -141,13 +141,25 @@ const gameWinner = document.querySelector('#audio-winner')
 const time = document.querySelector('.timer')
 const lost= document.querySelector('#loose')
 
+/// clcik button
+let min;
+const cardMenu=document.querySelector('.card__menu');
+const easyBtn = document.querySelector('#easy');
+easyBtn.addEventListener('click',()=>{
+    easyBtn.setAttribute('data-number',2)
+    cardMenu.style.display='none';
+    min= easyBtn.getAttribute('data-number')
+console.log(min);
+})
+
+
 // assinging time
 let value=60
 
 let date= new Date();
 console.log(`${date.getMinutes()} : ${date.getSeconds()}`);
 let seconds= (date.getSeconds())
-let min= 2
+
 let interVal;
 
 
@@ -205,8 +217,8 @@ function checkCards(){
 
     else if(firstCard===secondCard){
         console.log('mathced');
-        images[firstId].setAttribute('src','https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png');
-        images[secondId].setAttribute('src','https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png');
+        images[firstId].setAttribute('src','images/transparent.png');
+        images[secondId].setAttribute('src','images/transparent.png');
 
         //
         audioWin.play();
@@ -253,6 +265,7 @@ function timer(){
         lost.play();
         console.log('fff');
         clearInterval(interVal);
+        document.querySelector('#gameOver').style.display='block';
 
         // game over
         
@@ -263,11 +276,14 @@ function timer(){
 }
 
 
-/// clcik button
-
-const cardMenu=document.querySelector('.card__menu');
-const easyBtn = document.querySelector('#easy');
-easyBtn.addEventListener('click',()=>{
-    cardMenu.style.display='none';
+//play again function 
+const playAgain = document.querySelector('#play-again');
+playAgain.addEventListener('click',()=>{
+    document.querySelector('#gameOver').style.display='none';
+    
+    window.location.reload();
+   
 })
+
+
 

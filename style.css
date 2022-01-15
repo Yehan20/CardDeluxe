@@ -5,7 +5,7 @@
 body{
     min-height:100vh;
     font-family:sans-serif;
-    background-image:url('https://images.pexels.com/photos/269630/pexels-photo-269630.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-image:url('images/bg.jpeg');
     background-size:cover;
     background-repeat:no-repeat;
     background-color:#333;
@@ -17,6 +17,12 @@ img{
     height:150px;
   
     border-radius:0.4em;
+}
+.timer{
+    color:#fff;
+}
+#gameOver{
+    display:none;
 }
 .grid{
     margin:3em auto;
@@ -33,8 +39,10 @@ img{
 .card__menu{
     position:fixed;
     inset:0;
-    background-image:url('https://images.pexels.com/photos/269630/pexels-photo-269630.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-image:url('images/bg.jpeg');
     z-index:99;
+    background-color:#333;
+    background-blend-mode: multiply;
     
 }
 .container{
