@@ -134,7 +134,7 @@ const arrayofCards=[
 
 // assinging variabls
 const grid = document.querySelector('.grid');
-const score= document.querySelector('.score');
+// const score= document.querySelector('.score');
 const audio = document.querySelector('#audio');
 const audioWin = document.querySelector('#audio-win');
 const gameWinner = document.querySelector('#audio-winner')
@@ -160,9 +160,10 @@ const easyBtn = document.querySelector('#easy');
 const mediumBtn =document.querySelector('#medium');
 const hardBtn =document.querySelector('#hard');
 const loadingBar= document.querySelector('.innerBar');
-loadingBar.style.background='orange';
-loadingBar.style.width=`99%`;
+const mainLoadingBar = document.querySelector('.loadingBar');
+
 let width=100;
+let t;
 
 
 
@@ -286,7 +287,7 @@ function checkCards(){
         //add to the winning array
         winningCards.push(images[firstId],images[secondId]);
 
-        score.textContent=(winningCards.length)/2;
+        // score.textContent=(winningCards.length)/2;
 
         if((winningCards.length===arrayofCards.length)){
            wonThegame();
@@ -309,16 +310,14 @@ function checkCards(){
     
 }
 
-let t;
-
 function timer(){
-   
+    mainLoadingBar.style.background='yellow';
     time.textContent=`${min} : ${seconds}`;
     seconds--;
     
     t--;
     console.log(t);
-    width=width-(width/t);
+    width=width-(width/t); // decrease the bar with the time
     loadingBar.style.width=`${width}% `;
 
 
