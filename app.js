@@ -142,109 +142,123 @@ const time = document.querySelector('.timer')
 const lost= document.querySelector('#loose')
 
 
+//arrays to store the matching cards and winning cards
 let selectedCards=[];
 let selectedId=[];
 const winningCards=[];
 
 
-// const wonThegame=document.querySelector('#gameWon')
 
 
 
 
-// /// clcik button
+
 let min;
+//buttons and menus
 const cardMenu=document.querySelector('.card__menu');
-
 const easyBtn = document.querySelector('#easy');
-easyBtn.addEventListener('click',()=>{
-    easyBtn.setAttribute('data-number',5)
-    cardMenu.style.display='none';
-    min= easyBtn.getAttribute('data-number')
-console.log(min);
-})
-
 const mediumBtn =document.querySelector('#medium');
-mediumBtn.addEventListener('click',()=>{
-    easyBtn.setAttribute('data-number',2)
-    cardMenu.style.display='none';
-    min= easyBtn.getAttribute('data-number')
-console.log(min);
-})
-
 const hardBtn =document.querySelector('#hard');
-hardBtn.addEventListener('click',()=>{
-    easyBtn.setAttribute('data-number',1)
-    cardMenu.style.display='none';
-    min= easyBtn.getAttribute('data-number')
-console.log(min);
-})
-
-
-
 
 
 // assinging time
-
-
 let seconds= 60;
 let interVal;
 
 
+// loading event listeners
+
+loadAll(); // loading all event listeners
+interVal=setInterval(timer, 1000); // satrt the clock
+newGame(); // load a new game
+
+
+function loadAll(){
+    hardBtn.addEventListener('click',hardGame);
+    mediumBtn.addEventListener('click',mediumGame);
+    easyBtn.addEventListener('click',easyGame);
+}
 
 
 
-function createCard(){
+//defefining the functions of the game levels
+function easyGame(){
+    easyBtn.setAttribute('data-number',6)
+    cardMenu.style.display='none';
+    min= easyBtn.getAttribute('data-number')
+    console.log(min);
+}
+
+function mediumGame(){
+    mediumBtn.setAttribute('data-number',4)
+    cardMenu.style.display='none';
+    min= mediumBtn.getAttribute('data-number')
+    console.log(min);
+}
+
+function hardGame(){
+    hardBtn.setAttribute('data-number',2)
+    cardMenu.style.display='none';
+    min= hardBtn.getAttribute('data-number')
+    console.log(min);
+}
+
+
+
+
+
+// defining the new game functions
+function newGame(){
    
     for(let i=0; i<arrayofCards.length; i++){
+
         const img =document.createElement('img');
+
         img.setAttribute('src','images/back.png');
-        img.setAttribute('data-number',i);
+        img.setAttribute('data-number',i); // adding numbers to all images
         img.addEventListener('click',flipCard);
-    
         grid.appendChild(img);
       
   }
 }
 
-createCard();
-
-interVal=setInterval(timer, 1000);
 
 
 function flipCard(){
-    console.log('clicked');
+    
     audio.play();
-    let dataNumber = this.getAttribute('data-number'); // get the data value
-    console.log(dataNumber);
-    this.setAttribute('src',arrayofCards[dataNumber].src);
-    selectedCards.push(arrayofCards[dataNumber].name);
+    let dataNumber = this.getAttribute('data-number'); // get the data value of the current clicked image
+
+
+    this.setAttribute('src',arrayofCards[dataNumber].src); // chaning the back image to the front image of thar card
+
+    selectedCards.push(arrayofCards[dataNumber].name); // adding the name of that card and id to the respective arrays
     selectedId.push(dataNumber)
 
-    // when first card is selected the timer will play
+   
     
-
-
-    if(selectedId.length===2 || selectedCards===2){
+    if(selectedId.length===2 || selectedCards===2){ // when we select two cards 
        setTimeout(checkCards,200);
     }
     
 }
 
 function checkCards(){
+    
+    //assingin variables to compare the two cards 
     let firstCard = selectedCards[0];
     let secondCard = selectedCards[1]
     let firstId = selectedId[0];
     let secondId= selectedId[1]
     let images = document.querySelectorAll('img');
 
-    if(firstId===secondId){
+    if(firstId===secondId){ // check if clicked the same card
         console.log('clicked the same card');
         images[firstId].setAttribute('src','images/back.png');
         images[secondId].setAttribute('src','images/back.png');
     }
 
-    else if(firstCard===secondCard){
+    else if(firstCard===secondCard){ // if any matches
         console.log('mathced');
         images[firstId].setAttribute('src','images/transparent.png');
         images[secondId].setAttribute('src','images/transparent.png');
@@ -256,11 +270,12 @@ function checkCards(){
         images[firstId].removeEventListener('click',flipCard);
         images[secondId].removeEventListener('click',flipCard);
         
+        //add to the winning array
         winningCards.push(images[firstId],images[secondId]);
+
         score.textContent=(winningCards.length)/2;
+
         if((winningCards.length===arrayofCards.length)){
-           gameWinner.play();
-           clearInterval(interVal);
            wonThegame();
         }
     }
@@ -274,11 +289,13 @@ function checkCards(){
       
 
     }
-
+    
+    // next clean the array and ready for another comparison between two cards
     selectedId=[];
     selectedCards=[];
     
 }
+
 
 function timer(){
 
@@ -286,30 +303,26 @@ function timer(){
     seconds--;
 
     if(seconds===0){
-      
-        min--;
-        seconds=59;
-        
+        --min;
+        seconds=59;    
     }
-   
 
     if(min===0){
-        lost.play();
-        console.log('fff');
-        clearInterval(interVal);
-        document.querySelector('#gameOver').style.display='block';
-
-
-        
+        lostThegame();     
     }
-
-   
 
 }
 
 
+//possible results 
+
 function wonThegame(){
-    console.log('functions works');
+
+    gameWinner.play();
+
+    clearInterval(interVal);
+
+
     document.querySelector('#gameWon').style.display='block';
     const playAgain = document.querySelector('#play-again-w');
     playAgain.addEventListener('click',()=>{
@@ -320,14 +333,23 @@ function wonThegame(){
     
 }
 
+function lostThegame(){
+    lost.play();
+    clearInterval(interVal);
 
-//play again function 
-const playAgain = document.querySelector('#play-again');
-playAgain.addEventListener('click',()=>{
+
+    document.querySelector('#gameOver').style.display='block';
+
+    const playAgain = document.querySelector('#play-again');
+    playAgain.addEventListener('click',()=>{
     document.querySelector('#gameOver').style.display='none';
     window.location.reload();
    
-})
+  } )
+
+}
+
+
 
 
 
