@@ -190,7 +190,7 @@ function loadAll(){
 
 //defefining the functions of the game levels
 function easyGame(){
-    interVal=setInterval(timer, 100); 
+    interVal=setInterval(timer, 1000); 
     easyBtn.setAttribute('data-number',6)
     cardMenu.style.display='none';
     min= easyBtn.getAttribute('data-number')
@@ -199,7 +199,7 @@ function easyGame(){
 }
 
 function mediumGame(){
-    interVal=setInterval(timer, 200); 
+    interVal=setInterval(timer, 1000); 
     mediumBtn.setAttribute('data-number',4)
     cardMenu.style.display='none';
     min= mediumBtn.getAttribute('data-number')
