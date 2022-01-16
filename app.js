@@ -1,4 +1,4 @@
-const arrayofCards=[
+let arrayofCards=[
     {
         src:'images/1.png',
         name:'ace'
@@ -171,6 +171,9 @@ let t;
 let seconds= 60;
 let interVal;
 
+arrayofCards.sort((a,b)=>0.5-Math.random());
+
+
 
 
 // loading event listeners
@@ -178,6 +181,7 @@ let interVal;
 loadAll(); // loading all event listeners
 // satrt the clock
 newGame(); // load a new game
+
 
 
 function loadAll(){
@@ -191,6 +195,7 @@ function loadAll(){
 
 //defefining the functions of the game levels
 function easyGame(){
+   
     interVal=setInterval(timer, 1000); 
     easyBtn.setAttribute('data-number',6)
     cardMenu.style.display='none';

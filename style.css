@@ -29,7 +29,6 @@ img{
     min-height:600px;
     flex-wrap:wrap;
     align-items:center;
-    justify-content: center;
     align-content:flex-start;
     gap:5px;
     padding:1em;
@@ -61,7 +60,7 @@ img{
     margin:3em auto;
     max-width:800px;
     justify-content:center;
-    flex-wrap: wrap;
+    flex-wrap:wrap;
 }
 .loadingBar{
     
