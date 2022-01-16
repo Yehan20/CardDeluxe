@@ -159,6 +159,11 @@ const cardMenu=document.querySelector('.card__menu');
 const easyBtn = document.querySelector('#easy');
 const mediumBtn =document.querySelector('#medium');
 const hardBtn =document.querySelector('#hard');
+const loadingBar= document.querySelector('.innerBar');
+loadingBar.style.background='orange';
+loadingBar.style.width=`99%`;
+let width=100;
+
 
 
 // assinging time
@@ -166,10 +171,11 @@ let seconds= 60;
 let interVal;
 
 
+
 // loading event listeners
 
 loadAll(); // loading all event listeners
-interVal=setInterval(timer, 1000); // satrt the clock
+// satrt the clock
 newGame(); // load a new game
 
 
@@ -177,30 +183,37 @@ function loadAll(){
     hardBtn.addEventListener('click',hardGame);
     mediumBtn.addEventListener('click',mediumGame);
     easyBtn.addEventListener('click',easyGame);
+    
 }
 
 
 
 //defefining the functions of the game levels
 function easyGame(){
+    interVal=setInterval(timer, 100); 
     easyBtn.setAttribute('data-number',6)
     cardMenu.style.display='none';
     min= easyBtn.getAttribute('data-number')
     console.log(min);
+    t=(Number(7)*60);
 }
 
 function mediumGame(){
+    interVal=setInterval(timer, 200); 
     mediumBtn.setAttribute('data-number',4)
     cardMenu.style.display='none';
     min= mediumBtn.getAttribute('data-number')
     console.log(min);
+    t=(Number(5)*60);
 }
 
 function hardGame(){
+    interVal=setInterval(timer, 1000); 
     hardBtn.setAttribute('data-number',2)
     cardMenu.style.display='none';
     min= hardBtn.getAttribute('data-number')
     console.log(min);
+    t=(Number(3)*60);
 }
 
 
@@ -296,19 +309,28 @@ function checkCards(){
     
 }
 
+let t;
 
 function timer(){
-
+   
     time.textContent=`${min} : ${seconds}`;
     seconds--;
+    
+    t--;
+    console.log(t);
+    width=width-(width/t);
+    loadingBar.style.width=`${width}% `;
+
 
     if(seconds===0){
-        --min;
+
+        min--;
         seconds=59;    
     }
 
-    if(min===0){
-        lostThegame();     
+    if(min===-1){
+        setTimeout(lostThegame,200)
+            
     }
 
 }
