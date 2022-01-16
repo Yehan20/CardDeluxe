@@ -141,33 +141,58 @@ const gameWinner = document.querySelector('#audio-winner')
 const time = document.querySelector('.timer')
 const lost= document.querySelector('#loose')
 
-/// clcik button
+
+let selectedCards=[];
+let selectedId=[];
+const winningCards=[];
+
+
+// const wonThegame=document.querySelector('#gameWon')
+
+
+
+
+// /// clcik button
 let min;
 const cardMenu=document.querySelector('.card__menu');
+
 const easyBtn = document.querySelector('#easy');
 easyBtn.addEventListener('click',()=>{
+    easyBtn.setAttribute('data-number',5)
+    cardMenu.style.display='none';
+    min= easyBtn.getAttribute('data-number')
+console.log(min);
+})
+
+const mediumBtn =document.querySelector('#medium');
+mediumBtn.addEventListener('click',()=>{
     easyBtn.setAttribute('data-number',2)
     cardMenu.style.display='none';
     min= easyBtn.getAttribute('data-number')
 console.log(min);
 })
 
+const hardBtn =document.querySelector('#hard');
+hardBtn.addEventListener('click',()=>{
+    easyBtn.setAttribute('data-number',1)
+    cardMenu.style.display='none';
+    min= easyBtn.getAttribute('data-number')
+console.log(min);
+})
+
+
+
+
 
 // assinging time
-let value=60
 
-let date= new Date();
-console.log(`${date.getMinutes()} : ${date.getSeconds()}`);
-let seconds= (date.getSeconds())
 
+let seconds= 60;
 let interVal;
 
 
 
 
-let selectedCards=[];
-let selectedId=[];
-const winningCards=[];
 
 function createCard(){
    
@@ -176,12 +201,16 @@ function createCard(){
         img.setAttribute('src','images/back.png');
         img.setAttribute('data-number',i);
         img.addEventListener('click',flipCard);
+    
         grid.appendChild(img);
       
   }
 }
 
 createCard();
+
+interVal=setInterval(timer, 1000);
+
 
 function flipCard(){
     console.log('clicked');
@@ -193,7 +222,7 @@ function flipCard(){
     selectedId.push(dataNumber)
 
     // when first card is selected the timer will play
-     interVal=setInterval(timer, 100);
+    
 
 
     if(selectedId.length===2 || selectedCards===2){
@@ -231,6 +260,8 @@ function checkCards(){
         score.textContent=(winningCards.length)/2;
         if((winningCards.length===arrayofCards.length)){
            gameWinner.play();
+           clearInterval(interVal);
+           wonThegame();
         }
     }
 
@@ -250,7 +281,7 @@ function checkCards(){
 }
 
 function timer(){
-    
+
     time.textContent=`${min} : ${seconds}`;
     seconds--;
 
@@ -258,6 +289,7 @@ function timer(){
       
         min--;
         seconds=59;
+        
     }
    
 
@@ -267,7 +299,7 @@ function timer(){
         clearInterval(interVal);
         document.querySelector('#gameOver').style.display='block';
 
-        // game over
+
         
     }
 
@@ -276,14 +308,28 @@ function timer(){
 }
 
 
+function wonThegame(){
+    console.log('functions works');
+    document.querySelector('#gameWon').style.display='block';
+    const playAgain = document.querySelector('#play-again-w');
+    playAgain.addEventListener('click',()=>{
+        document.querySelector('#gameWon').style.display='none';
+        window.location.reload();
+       
+    })
+    
+}
+
+
 //play again function 
 const playAgain = document.querySelector('#play-again');
 playAgain.addEventListener('click',()=>{
     document.querySelector('#gameOver').style.display='none';
-    
     window.location.reload();
    
 })
+
+
 
 
 

@@ -21,9 +21,7 @@ img{
 .timer{
     color:#fff;
 }
-#gameOver{
-    display:none;
-}
+
 .grid{
     margin:3em auto;
     display:flex;
@@ -44,6 +42,14 @@ img{
     background-color:#333;
     background-blend-mode: multiply;
     
+}
+#gameOver{
+    display:none;
+}
+#gameWon{
+    display: none;
+
+ 
 }
 .container{
     max-width:800px;
