@@ -142,6 +142,7 @@ const time = document.querySelector('.timer')
 const lost= document.querySelector('#loose')
 
 
+
 //arrays to store the matching cards and winning cards
 let selectedCards=[];
 let selectedId=[];
@@ -154,7 +155,7 @@ let totalScore;
 
 
 
-//buttons and menus
+//buttons and menus and inputs
 const cardMenu=document.querySelector('.card__menu');
 const easyBtn = document.querySelector('#easy');
 const mediumBtn =document.querySelector('#medium');
@@ -162,10 +163,13 @@ const hardBtn =document.querySelector('#hard');
 const loadingBar= document.querySelector('.innerBar');
 const mainLoadingBar = document.querySelector('.loadingBar');
 const hintBtn = document.querySelector('#hint');
+const addHighscorebtn= document.querySelector('#highscoreBtn');
+const userInput = document.querySelector('#userName');
+const playAgain = document.querySelectorAll('#play-again');
 
 let width=100; // initilzie width of the bar
-let t;
-let min;
+let t; // variable to decrease width
+let min; // minute variable
 
 
 
@@ -173,12 +177,15 @@ let min;
 let seconds= 59;
 let interVal;
 
-const testArray=[];
+
+//player object to add to the score
+const player={
+
+}
 
 arrayofCards.sort((a,b)=>0.5-Math.random());
 
-const newArray = arrayofCards.sort((a,b)=>0.5-Math.random()).map(cards=>cards);
-console.log(newArray);
+
 
 
 // loading event listeners
@@ -194,9 +201,21 @@ function loadAll(){
     mediumBtn.addEventListener('click',mediumGame);
     easyBtn.addEventListener('click',easyGame);
     hintBtn.addEventListener('click',hint)
+    playAgain.forEach(play=>{
+        play.addEventListener('click',playAgainEE)
+    })
+   
     
 }
 
+
+
+function playAgainEE(){
+
+     document.querySelector('#gameOver').style.display='none';
+     window.location.reload();
+      
+}
 
 
 //defefining the functions of the game levels
@@ -333,7 +352,7 @@ function checkCards(){
 }
 
 function timer(){
-    mainLoadingBar.style.background='#111'; // brownloa
+    mainLoadingBar.style.background='#0a84ef '; // brownloa
     time.textContent=`${min}:${seconds}`;
     seconds--;
     
@@ -363,7 +382,7 @@ function hint(){
     const img =document.querySelectorAll('img');
     for(let i=0; i<arrayofCards.length; i++){
         
-        if(img[i].getAttribute('src')!='images/transparent.png')
+        if(img[i].getAttribute('src')!='images/transparent.png') // becuase when some cards are matched we want to exclude them
         {
             img[i].setAttribute('src',arrayofCards[i].src);
             console.log(img[i].getAttribute('src'));
@@ -388,6 +407,8 @@ function hint(){
 
 }
 
+
+
 //possible results 
 
 function wonThegame(){
@@ -398,26 +419,46 @@ function wonThegame(){
 
 
     document.querySelector('#gameWon').style.display='block';
-    const playAgain = document.querySelector('#play-again-w');
-    playAgain.addEventListener('click',()=>{
-        document.querySelector('#gameWon').style.display='none';
-        window.location.reload();
+    // const playAgain = document.querySelector('#play-again-w');
+    // playAgain.addEventListener('click',()=>{
+    //     document.querySelector('#gameWon').style.display='none';
+    //     window.location.reload();
        
-    })
+    // })
     
-    totalScore=min*seconds;
-    console.log(totalScore);
-    // const storage = new Storage();
-    // storage.AddLocalStorage(totalScore);
+    totalScore=(min*60)+seconds;
+
 
     // checking if any record is in local storage if not we have our new hight score
-       let val;
-       const sotrage = new Storage();
+        let val;
+        const sotrage = new Storage();
         val= sotrage.checkLocalStorage();
+      console.log(val);
         if(val.length===0){
             document.querySelector('#HighscoresMenu').style.display='block';
+            addHighscorebtn.addEventListener('click',addtoStorage)
         }
+        else{
+            document.querySelector('#HighscoresMenu').style.display='block';
+            val.forEach(v=>{
+                if(totalScore>v.Score)addHighscorebtn.addEventListener('click',addtoStorage)
+            })
+        }
+        
 
+}
+
+
+// this adds the object to the local storage
+function addtoStorage(){
+        player.Score=totalScore;
+        player.userName=userInput.value;
+        const storage = new Storage();
+        storage.AddLocalStorage(player)
+
+        //after adding we hide the butoon and feild
+        addHighscorebtn.style.display='none';
+        userInput.style.display='none'
 }
 
 function lostThegame(){
@@ -427,12 +468,12 @@ function lostThegame(){
 
     document.querySelector('#gameOver').style.display='block';
 
-    const playAgain = document.querySelector('#play-again');
-    playAgain.addEventListener('click',()=>{
-    document.querySelector('#gameOver').style.display='none';
-    window.location.reload();
+//     const playAgain = document.querySelector('#play-again');
+//     playAgain.addEventListener('click',()=>{
+//     document.querySelector('#gameOver').style.display='none';
+//     window.location.reload();
    
-  } )
+//   } )
 
 }
 
