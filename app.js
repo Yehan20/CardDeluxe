@@ -153,7 +153,7 @@ const winningCards=[];
 
 
 
-let min;
+
 //buttons and menus
 const cardMenu=document.querySelector('.card__menu');
 const easyBtn = document.querySelector('#easy');
@@ -163,8 +163,9 @@ const loadingBar= document.querySelector('.innerBar');
 const mainLoadingBar = document.querySelector('.loadingBar');
 const hintBtn = document.querySelector('#hint');
 
-let width=100;
+let width=100; // initilzie width of the bar
 let t;
+let min;
 
 
 
@@ -172,9 +173,12 @@ let t;
 let seconds= 59;
 let interVal;
 
+const testArray=[];
+
 arrayofCards.sort((a,b)=>0.5-Math.random());
 
-
+const newArray = arrayofCards.sort((a,b)=>0.5-Math.random()).map(cards=>cards);
+console.log(newArray);
 
 
 // loading event listeners
@@ -277,14 +281,23 @@ function checkCards(){
         console.log('clicked the same card');
         images[firstId].setAttribute('src','images/back.png');
         images[secondId].setAttribute('src','images/back.png');
+       
     }
 
     else if(firstCard===secondCard){ // if any matches
         console.log('mathced');
         images[firstId].setAttribute('src','images/transparent.png');
         images[secondId].setAttribute('src','images/transparent.png');
+        // newArray[firstId].src='images/transparent.png'
+        // newArray[secondId].src='images/transparent.png'
 
         //
+        // let t0=newArray.splice(firstId,1);
+        // let t1=newArray.splice(secondId,1);
+        // arrayofCards[firstId].src=''
+        // testArray.push(t0);
+        // testArray.push(t1);
+        // console.log(testArray);
         audioWin.play();
 
         //remove event listender
@@ -314,16 +327,17 @@ function checkCards(){
     // next clean the array and ready for another comparison between two cards
     selectedId=[];
     selectedCards=[];
+
     
 }
 
 function timer(){
-    mainLoadingBar.style.background='#5e3a20'; // brownloa
+    mainLoadingBar.style.background='#111'; // brownloa
     time.textContent=`${min}:${seconds}`;
     seconds--;
     
     t--;
-    console.log(t);
+
     width=width-(width/t); // decrease the bar with the time
     loadingBar.style.width=`${width}% `;
 
@@ -343,20 +357,28 @@ function timer(){
 
 //hint
 function hint(){
+
+    console.log(arrayofCards.length);
     const img =document.querySelectorAll('img');
     for(let i=0; i<arrayofCards.length; i++){
-
-        img[i].setAttribute('src',arrayofCards[i].src);
+        
+        if(img[i].getAttribute('src')!='images/transparent.png')
+        {
+            img[i].setAttribute('src',arrayofCards[i].src);
+            console.log(img[i].getAttribute('src'));
+        }
+     
     
       
   }
 
   setTimeout(()=>{
     for(let i=0; i<arrayofCards.length; i++){
-
-        img[i].setAttribute('src','images/back.png');
-    
-      
+        
+        if(img[i].getAttribute('src')!='images/transparent.png'){
+            img[i].setAttribute('src','images/back.png');
+        }
+     
   }
  },1000)
   

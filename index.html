@@ -13,16 +13,18 @@
 </head>
 <body>
    <div class="stats">
+      <div class="hint">
+         <button class="btn" id="hint">Hint</button>
+       </div>
       <h3 class="timer">0:00</h3>
+   
      <div class="loading__container">
       <!-- <span class="clock"><i class="far fa-clock"></i></span>   -->
       <div class="loadingBar">
          <div class="innerBar"></div>
       </div>
      </div>
-     <div class="hint">
-       <button class="btn" id="hint">Hint</button>
-     </div>
+
    
    </div>
   
@@ -80,10 +82,7 @@
      <div class="card__menu" id="gameOver">
       <div class="container">
          <div class="row">
-            <!-- <div class="col">
-              <h1 class="card__title">Card <span>Deuluxe</span></h1>
-              
-            </div> -->
+
 
             <div class="col">
                <h3 class="card__title">Game Over!</h3>
@@ -103,7 +102,7 @@
       <div class="container">
           <div class="row">
               <div class="col">
-              <h1 class="card__title">Congratulations ! </h1>
+              <h3 class="card__title" id="winner__heading">Congratulations! </h3>
               <h3 class="win__title">You won</h3>
               </div>
 
@@ -113,6 +112,29 @@
          </div>
        </div> 
     </div> 
+   
+    <div  id="Highscores" class="card__menu">
+      <div class="container">
+          <div class="row">
+              <div class="col">
+              <h3 class="card__title" id="winner__heading">High scores </h3>
+             
+              </div>
+
+              <div class="col">
+                 <div class="split">
+                  <h3 class="win__title">Alex</h3>
+                  <h3 class="win__title">5:67</h3>
+                 </div>
+              </div>
+
+              <div class="col">
+               <button class="option"  id="back">Back</button>
+              </div>
+         </div>
+       </div> 
+    </div> 
+
 
    <script src="games.js"></script>
     <script src="app.js"></script>

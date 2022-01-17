@@ -44,6 +44,11 @@ img{
 img:hover{
     cursor: pointer;
 }
+
+.split{
+    display:flex;
+    gap:10px;
+}
 /* card menu css */
 .card__menu{
     position:fixed;
@@ -54,7 +59,7 @@ img:hover{
     background-blend-mode: multiply;
     
 }
-#gameOver{
+#gameOver,#Highscores{
     display:none;
 }
 #gameWon{
@@ -66,19 +71,19 @@ img:hover{
     display:flex;
     align-items:center;
     gap:20px;
-    margin:3em auto 0.5em auto;
+    margin:2em auto 0.5em auto;
     max-width:800px;
     justify-content:center;
     flex-wrap:wrap;
 }
 .loading__container{
-    background:#f09c09;
+    background:#0579ea;
     position: relative;
     padding:0.6em  1em 0.6em 1em ;
     border-radius:.7em;
     max-width:350px;
     width:90%;
-    box-shadow:0 0 5px 5px #5e3a20, 0 0 7px 7px #fff;
+    box-shadow:0 0 5px 5px #5e3a20, inset  0 0 2px 2px #fff;
     /* overflow: hidden; */
     
 }
@@ -86,14 +91,14 @@ img:hover{
     
     max-width:300px;
     height:25px;
-    margin-right:3em;
+    /* margin-right:3em; */
     width:100%;
     padding:0.1em;
     border-radius:0.7em;
     position: relative;
     left:0;
     margin-left:1em;
-    background:#5e3a20;
+    background:#fff;
     /* outline:2px solid #fff; */
     box-shadow:inset 0 0 1px 3px #222;
     border:1px solid #5e3a20;
@@ -104,7 +109,7 @@ img:hover{
 .innerBar{
     position:absolute;
     content:'';
-    background:#a3d750 ;
+    background:#fff;
    
     top:0;
     left:-0.1em;
@@ -166,6 +171,9 @@ img:hover{
     text-transform:uppercase;
     color:#fff;
     font-weight:700;
+}
+.winner__heading{
+    font-size:clamp(100%,10vw,6rem);   
 }
 .bar{
    background:#fff;
