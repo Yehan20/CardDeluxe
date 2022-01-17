@@ -8,15 +8,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oxygen+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <title>Card Deuluxe</title>
 </head>
 <body>
    <div class="stats">
-      <h3 class="score"></h3>
-      <h3 class="timer">0 : 00</h3>
+      <h3 class="timer">0:00</h3>
+     <div class="loading__container">
+      <!-- <span class="clock"><i class="far fa-clock"></i></span>   -->
       <div class="loadingBar">
          <div class="innerBar"></div>
       </div>
+     </div>
+     <div class="hint">
+       <button class="btn" id="hint">Hint</button>
+     </div>
+   
    </div>
   
     <div class="grid">
@@ -59,7 +66,7 @@
                <button class="option level" id="hard">Hard</button>
               </div>
 
-              <div class="col split">
+              <div class="col left" >
                  <div><button class="option">High Scores</button></div>
               </div>
 
@@ -73,13 +80,19 @@
      <div class="card__menu" id="gameOver">
       <div class="container">
          <div class="row">
-            <div class="col">
+            <!-- <div class="col">
               <h1 class="card__title">Card <span>Deuluxe</span></h1>
               
-            </div>
+            </div> -->
 
             <div class="col">
-               <button class="option"  id="play-again">play-again</button>
+               <h3 class="card__title">Game Over!</h3>
+               <p class="game__over">you Ran out of Time !</p>
+               
+             </div>
+
+            <div class="col">
+               <button class="option"  id="play-again">play again</button>
             </div>
       </div>
 
@@ -90,12 +103,12 @@
       <div class="container">
           <div class="row">
               <div class="col">
-              <h1 class="card__title">Card <span>Deuluxe</span></h1>
+              <h1 class="card__title">Congratulations ! </h1>
               <h3 class="win__title">You won</h3>
               </div>
 
               <div class="col">
-               <button class="option"  id="play-again-w">Play Agon</button>
+               <button class="option"  id="play-again-w">Play Again</button>
               </div>
          </div>
        </div> 

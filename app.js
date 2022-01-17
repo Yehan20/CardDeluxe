@@ -161,6 +161,7 @@ const mediumBtn =document.querySelector('#medium');
 const hardBtn =document.querySelector('#hard');
 const loadingBar= document.querySelector('.innerBar');
 const mainLoadingBar = document.querySelector('.loadingBar');
+const hintBtn = document.querySelector('#hint');
 
 let width=100;
 let t;
@@ -168,7 +169,7 @@ let t;
 
 
 // assinging time
-let seconds= 60;
+let seconds= 59;
 let interVal;
 
 arrayofCards.sort((a,b)=>0.5-Math.random());
@@ -188,6 +189,7 @@ function loadAll(){
     hardBtn.addEventListener('click',hardGame);
     mediumBtn.addEventListener('click',mediumGame);
     easyBtn.addEventListener('click',easyGame);
+    hintBtn.addEventListener('click',hint)
     
 }
 
@@ -316,8 +318,8 @@ function checkCards(){
 }
 
 function timer(){
-    mainLoadingBar.style.background='yellow';
-    time.textContent=`${min} : ${seconds}`;
+    mainLoadingBar.style.background='#5e3a20'; // brownloa
+    time.textContent=`${min}:${seconds}`;
     seconds--;
     
     t--;
@@ -333,12 +335,35 @@ function timer(){
     }
 
     if(min===-1){
-        setTimeout(lostThegame,200)
+        setTimeout(lostThegame,1000)
             
     }
 
 }
 
+//hint
+function hint(){
+    const img =document.querySelectorAll('img');
+    for(let i=0; i<arrayofCards.length; i++){
+
+        img[i].setAttribute('src',arrayofCards[i].src);
+    
+      
+  }
+
+  setTimeout(()=>{
+    for(let i=0; i<arrayofCards.length; i++){
+
+        img[i].setAttribute('src','images/back.png');
+    
+      
+  }
+ },1000)
+  
+  hintBtn.style.background='#ccc'
+  hintBtn.disabled=true;
+
+}
 
 //possible results 
 
