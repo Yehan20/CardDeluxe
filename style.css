@@ -59,7 +59,7 @@ img:hover{
     background-blend-mode: multiply;
     
 }
-#gameOver,#Highscores{
+#gameOver,#Highscores,#HighscoresMenu{
     display:none;
 }
 #gameWon{

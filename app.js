@@ -146,7 +146,7 @@ const lost= document.querySelector('#loose')
 let selectedCards=[];
 let selectedId=[];
 const winningCards=[];
-
+let totalScore;
 
 
 
@@ -311,6 +311,7 @@ function checkCards(){
 
         if((winningCards.length===arrayofCards.length)){
            wonThegame();
+          
         }
     }
 
@@ -404,6 +405,19 @@ function wonThegame(){
        
     })
     
+    totalScore=min*seconds;
+    console.log(totalScore);
+    // const storage = new Storage();
+    // storage.AddLocalStorage(totalScore);
+
+    // checking if any record is in local storage if not we have our new hight score
+       let val;
+       const sotrage = new Storage();
+        val= sotrage.checkLocalStorage();
+        if(val.length===0){
+            document.querySelector('#HighscoresMenu').style.display='block';
+        }
+
 }
 
 function lostThegame(){
