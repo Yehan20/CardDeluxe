@@ -147,6 +147,17 @@ input[type=text]{
     padding:1.5em;
     width:85%;
     position: relative;
+    overflow:auto;
+}
+@media (max-width:450px) {
+    .container{
+        margin:1em auto;
+        padding:0.5em;
+
+    }
+    .loadingBar{
+        margin-left:0;
+    }
 }
 .container::before{
    position:absolute;
