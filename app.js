@@ -427,7 +427,7 @@ function hint(){
         }
      
   }
- },1000)
+ },1500)
   
   hintBtn.style.background='#ccc'
   hintBtn.disabled=true;
