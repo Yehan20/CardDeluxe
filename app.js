@@ -296,7 +296,7 @@ function newGame(){
 
         img.setAttribute('src','images/back.png');
         img.setAttribute('data-number',i); // adding numbers to all images
-        img.addEventListener('click',flipCard);
+        img.addEventListener('mouseup',flipCard);
         grid.appendChild(img);
       
   }
