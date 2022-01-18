@@ -166,6 +166,7 @@ const hintBtn = document.querySelector('#hint');
 const addHighscorebtn= document.querySelector('#highscoreBtn');
 const userInput = document.querySelector('#userName');
 const playAgain = document.querySelectorAll('#play-again');
+const viewHighscoreBtn = document.querySelector('#highscore');
 
 let width=100; // initilzie width of the bar
 let t; // variable to decrease width
@@ -204,11 +205,52 @@ function loadAll(){
     playAgain.forEach(play=>{
         play.addEventListener('click',playAgainEE)
     })
+
+    viewHighscoreBtn.addEventListener('click',viewHighScoreMenu);
    
     
 }
 
 
+//toggle high score menu
+function viewHighScoreMenu(){
+    document.querySelector('#Highscores').style.display='block';
+    const str = new Storage();
+    let get= str.checkLocalStorage()
+    let split = document.querySelector('.split');
+    get.sort((a,b)=> b.Score -a.Score);
+    var items = [
+        { name: 'Edward', value: 21 },
+        { name: 'Sharpe', value: 37 },
+        { name: 'And', value: 45 },
+        { name: 'The', value: -12 },
+        { name: 'Magnetic', value: 13 },
+        { name: 'Zeros', value: 37 }
+      ];
+      
+      // sort by value
+      items.sort(function (a, b) {
+        return a.value + b.value;
+      });
+
+      console.log(items);
+    console.log(get);
+    get.forEach(data=>{
+        console.log(data.userName,data.Score);
+        split.innerHTML+=`
+        <div style="display:flex; justify-content:center; ">
+        <h3 class="hs__title style='margin-top:5px;'">${data.userName}:</h3>   
+        <h3 class="hs__title  style='margin-top:5px;'">${data.Score} </h3>         
+        </div>
+        `
+    })
+
+    document.querySelector('#back').addEventListener('click',()=>{
+        cardMenu.style.display='block';
+        split.innerHTML='';
+        document.querySelector('#Highscores').style.display='none';
+    })
+}
 
 function playAgainEE(){
 

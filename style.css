@@ -58,7 +58,13 @@ input[type=text]{
 
 .split{
     display:flex;
-    gap:10px;
+    gap:5px;
+    
+
+}
+.split-col{
+    flex-direction: column;
+    overflow: auto;
 }
 /* card menu css */
 .card__menu{
@@ -176,13 +182,16 @@ input[type=text]{
     font-family:sans-serif;
     text-align:center;
 }
-.game__over,.win__title{
+.game__over,.win__title,.hs__title{
     margin-top:1em;
     font-size:1.5rem;
     text-align:center;
     text-transform:uppercase;
     color:#fff;
     font-weight:700;
+}
+.hs__title{
+   margin-top:0.3em!important;
 }
 #winner__heading{
     font-size:clamp(100%,10vw,6rem);   
