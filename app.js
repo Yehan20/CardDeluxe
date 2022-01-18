@@ -219,22 +219,16 @@ function viewHighScoreMenu(){
     let get= str.checkLocalStorage()
     let split = document.querySelector('.split');
     get.sort((a,b)=> b.Score -a.Score);
-    var items = [
-        { name: 'Edward', value: 21 },
-        { name: 'Sharpe', value: 37 },
-        { name: 'And', value: 45 },
-        { name: 'The', value: -12 },
-        { name: 'Magnetic', value: 13 },
-        { name: 'Zeros', value: 37 }
-      ];
-      
-      // sort by value
-      items.sort(function (a, b) {
-        return a.value + b.value;
-      });
 
-      console.log(items);
     console.log(get);
+    if(get.length===0){
+        split.innerHTML+=`
+        <div style="display:flex; justify-content:center; ">
+        <h3 class="hs__title style='margin-top:5px;'">No high Scores Yet !</h3>          
+        </div>
+        `   
+    } 
+
     get.forEach(data=>{
         console.log(data.userName,data.Score);
         split.innerHTML+=`
@@ -264,7 +258,7 @@ function playAgainEE(){
 function easyGame(){
    
     interVal=setInterval(timer, 1000); 
-    easyBtn.setAttribute('data-number',6)
+    easyBtn.setAttribute('data-number',2)
     cardMenu.style.display='none';
     min= easyBtn.getAttribute('data-number')
     console.log(min);
@@ -273,7 +267,7 @@ function easyGame(){
 
 function mediumGame(){
     interVal=setInterval(timer, 1000); 
-    mediumBtn.setAttribute('data-number',4)
+    mediumBtn.setAttribute('data-number',1)
     cardMenu.style.display='none';
     min= mediumBtn.getAttribute('data-number')
     console.log(min);
@@ -282,7 +276,7 @@ function mediumGame(){
 
 function hardGame(){
     interVal=setInterval(timer, 1000); 
-    hardBtn.setAttribute('data-number',2)
+    hardBtn.setAttribute('data-number',0)
     cardMenu.style.display='none';
     min= hardBtn.getAttribute('data-number')
     console.log(min);
@@ -349,16 +343,7 @@ function checkCards(){
         console.log('mathced');
         images[firstId].setAttribute('src','images/transparent.png');
         images[secondId].setAttribute('src','images/transparent.png');
-        // newArray[firstId].src='images/transparent.png'
-        // newArray[secondId].src='images/transparent.png'
 
-        //
-        // let t0=newArray.splice(firstId,1);
-        // let t1=newArray.splice(secondId,1);
-        // arrayofCards[firstId].src=''
-        // testArray.push(t0);
-        // testArray.push(t1);
-        // console.log(testArray);
         audioWin.play();
 
         //remove event listender
@@ -461,12 +446,7 @@ function wonThegame(){
 
 
     document.querySelector('#gameWon').style.display='block';
-    // const playAgain = document.querySelector('#play-again-w');
-    // playAgain.addEventListener('click',()=>{
-    //     document.querySelector('#gameWon').style.display='none';
-    //     window.location.reload();
-       
-    // })
+
     
     totalScore=(min*60)+seconds;
 
@@ -481,9 +461,16 @@ function wonThegame(){
             addHighscorebtn.addEventListener('click',addtoStorage)
         }
         else{
-            document.querySelector('#HighscoresMenu').style.display='block';
+       
             val.forEach(v=>{
-                if(totalScore>v.Score)addHighscorebtn.addEventListener('click',addtoStorage)
+                if(totalScore>v.Score){
+                    document.querySelector('#HighscoresMenu').style.display='block';
+                    userInput.value='';
+                    addHighscorebtn.addEventListener('click',addtoStorage)
+                }
+                else {
+                    document.querySelector('#gameWon').style.display='block';
+                }
             })
         }
         

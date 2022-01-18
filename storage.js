@@ -23,10 +23,3 @@ class Storage{
     }
 }
 
-// const obj={
-//     name:'dog',
-//     age:31
-// }
-// const sotrage = new Storage();
-// let val= sotrage.AddLocalStorage(obj);
-// let val2= sotrage.AddLocalStorage(obj);
