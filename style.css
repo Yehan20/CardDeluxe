@@ -19,12 +19,7 @@ body{
 
 .grid{
     margin:0em auto;
-    display:flex;
     width:min(800px,100%);
-    min-height:600px;
-    /* flex-wrap:wrap;
-    align-items:center;
-    align-content:flex-start; */
     grid-gap:5px;
     padding:1em;
     display:grid;
@@ -212,6 +207,7 @@ input[type=text]{
    border:1px solid #0579ea;
    color:#0579ea;
    margin:1em 0 0.4em 0;
+   font-size:1.4rem;
 }
 
 .option{

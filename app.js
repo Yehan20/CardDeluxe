@@ -463,7 +463,7 @@ function wonThegame(){
         else{
        
             val.forEach(v=>{
-                if(totalScore>v.Score){
+                if(totalScore>v.Score){ // only the new score is higher than any of the available ones
                     document.querySelector('#HighscoresMenu').style.display='block';
                     userInput.value='';
                     addHighscorebtn.addEventListener('click',addtoStorage)
