@@ -318,7 +318,7 @@ function flipCard(){
    
     
     if(selectedId.length===2 || selectedCards===2){ // when we select two cards 
-       setTimeout(checkCards,500);
+       setTimeout(checkCards,250);
     }
     
 }
