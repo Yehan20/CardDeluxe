@@ -289,7 +289,7 @@ function hardGame(){
 
 // defining the new game functions
 function newGame(){
-   
+   console.log('function called');
     for(let i=0; i<arrayofCards.length; i++){
 
         const img =document.createElement('img');
@@ -318,6 +318,7 @@ function flipCard(){
    
     
     if(selectedCards.length===2){ // when we select two cards 
+    
        setTimeout(checkCards,250);
     }
     
@@ -325,7 +326,10 @@ function flipCard(){
 
 function checkCards(){
     
-    //assingin variables to compare the two cards 
+    //assingin variables to compare the two cards
+       
+
+     
     let firstCard = selectedCards[0];
     let secondCard = selectedCards[1]
     let firstId = selectedId[0];
@@ -345,10 +349,13 @@ function checkCards(){
         images[secondId].setAttribute('src','images/transparent.png');
 
         audioWin.play();
-
+        alert('matched')
         //remove event listender
-        images[firstId].removeEventListener('click',flipCard);
-        images[secondId].removeEventListener('click',flipCard);
+        images[firstId].removeEventListener('mouseup',flipCard);
+        images[secondId].removeEventListener('mouseup',flipCard);
+        console.log(images[firstId],images[secondId]);
+        console.log(firstId,secondId);
+
         
         //add to the winning array
         winningCards.push(images[firstId],images[secondId]);
