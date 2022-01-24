@@ -140,6 +140,7 @@ const audioWin = document.querySelector('#audio-win');
 const gameWinner = document.querySelector('#audio-winner')
 const time = document.querySelector('.timer')
 const lost= document.querySelector('#loose')
+const mutleBtn = document.querySelector('#off');
 
 
 
@@ -349,7 +350,7 @@ function checkCards(){
         images[secondId].setAttribute('src','images/transparent.png');
 
         audioWin.play();
-        alert('matched')
+        
         //remove event listender
         images[firstId].removeEventListener('mouseup',flipCard);
         images[secondId].removeEventListener('mouseup',flipCard);
@@ -504,15 +505,34 @@ function lostThegame(){
 
     document.querySelector('#gameOver').style.display='block';
 
-//     const playAgain = document.querySelector('#play-again');
-//     playAgain.addEventListener('click',()=>{
-//     document.querySelector('#gameOver').style.display='none';
-//     window.location.reload();
-   
-//   } )
 
 }
 
+
+// 
+
+mutleBtn.addEventListener('click',()=>{
+    let audio = document.querySelectorAll('audio');
+
+    if(!mutleBtn.classList.contains('off-now')){
+        mutleBtn.classList.add('off-now')
+        audio.forEach(aud=>{
+            aud.pause();
+            aud.muted=true
+            mutleBtn.textContent='Sound On';
+            
+        })
+    }
+    else{
+        mutleBtn.classList.remove('off-now')
+        audio.forEach(aud=>{
+            aud.muted=false;
+            mutleBtn.textContent='Sound Off';
+        })
+    }
+      
+
+})
 
 
 

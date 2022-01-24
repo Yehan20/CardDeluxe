@@ -263,3 +263,6 @@ input[type=text]{
     color:#fff;
     text-shadow:  0.025em 0.025em 0 yellow
 }
+#off{
+    width:auto;
+}
